@@ -1,8 +1,9 @@
 val logbackVersion = "1.2.3"
-val ktorVersion = "2.0.1"
+val ktorVersion = "2.2.2"
 
 plugins {
-    kotlin("multiplatform") version "1.7.10"
+    kotlin("multiplatform") version "1.8.0"
+    kotlin("plugin.serialization") version "1.8.0"
     application
 }
 
@@ -18,19 +19,11 @@ repositories {
 kotlin {
     jvm {
         compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.jvmTarget = "17"
         }
         withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
-        }
-    }
-    js(LEGACY) {
-        binaries.executable()
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
-            }
         }
     }
     sourceSets {
@@ -42,6 +35,7 @@ kotlin {
 
                 implementation("io.ktor:ktor-server-sessions:$ktorVersion")
                 implementation("io.ktor:ktor-server-caching-headers:$ktorVersion")
+                implementation("io.ktor:ktor-server-conditional-headers:$ktorVersion")
                 implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
 
 //                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
@@ -65,6 +59,7 @@ application {
     mainClass.set("com.sveletor.application.ServerKt")
 }
 
+// Literally just a script that calls npm install then npm build. I'm new to gradle, go easy on me.
 tasks.register<Exec>("compileSvelte") {
     doFirst { println("Compiling Svelte Project...") }
     commandLine("./npmBuild.cmd")

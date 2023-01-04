@@ -10,6 +10,6 @@
 /src/jvmMain/resources/web/
 /src/jvmMain/resources/application.conf
 
-./.gradle/
-./.idea/
-./build/
+.gradle
+.idea
+build

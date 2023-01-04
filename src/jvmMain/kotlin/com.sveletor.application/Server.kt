@@ -45,18 +45,18 @@ fun Application.sveletorMain() {
  * Svelte Pages should go here.
  */
 fun Application.applicationPageRouting() {
-    sveltePage("/", "index.html")
+    sveltePage("/")
 
-    sveltePage("/login", "login.html")
+    sveltePage("/login")
 
-    sveltePage("/welcome", "welcome.html")
+    sveltePage("/welcome")
 
-    authenticatedSveltePage("/welcome/deeper", "welcome/deeper.html")
+    authenticatedSveltePage("/welcome/deeper")
 }
 
 
 /**
- * API Modules can go here
+ * Module that loads the modules in api package
  */
 private fun Application.applicationAPIModules() {
     authEndpoints()
@@ -64,15 +64,13 @@ private fun Application.applicationAPIModules() {
 
 
 /**
- * Server plugins can go here
+ * Module that installs ktor plugins
  */
 private fun Application.applicationPlugins() {
     install(Sessions) {
         cookie<SveletorSession>("Sveletor_Session_ID", storage = SessionStorageMemory()) {
             cookie.path = "/"
             cookie.maxAgeInSeconds = Duration.ofDays(3).toSeconds()
-//            cookie.httpOnly = false
-//            cookie.encoding = CookieEncoding.URI_ENCODING
         }
     }
 
