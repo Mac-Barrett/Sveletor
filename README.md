@@ -8,6 +8,8 @@ Sveletor is in V 0.0.1, as in it barely works without some duct tape, but it is 
 
 The application is already configured, just clone this repository and the gradle scripts should be able to run and configure the necessary packages itself.
 
+If you'd like to clone a blank version of this project, with just the home page and the widgets, clone this branch:
+
 build.gradle.kts relies on npmBuild.cmd which is literally just: 
 
 ```cmd

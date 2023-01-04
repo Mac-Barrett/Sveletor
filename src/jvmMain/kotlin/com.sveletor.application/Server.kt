@@ -2,7 +2,6 @@ package com.sveletor.application
 
 import com.sveletor.application.classes.SveletorSession
 import com.sveletor.application.api.authEndpoints
-import com.sveletor.application.components.authenticatedSveltePage
 import com.sveletor.application.components.sveltePage
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -46,12 +45,6 @@ fun Application.sveletorMain() {
  */
 fun Application.applicationPageRouting() {
     sveltePage("/")
-
-    sveltePage("/login")
-
-    sveltePage("/welcome")
-
-    authenticatedSveltePage("/welcome/deeper")
 }
 
 

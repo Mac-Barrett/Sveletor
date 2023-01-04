@@ -15,7 +15,9 @@ fun Application.authEndpoints() {
             val params = call.receiveParameters()
             val username = params["username"] ?: return@post call.respondRedirect("/login")
 
+            // TODO Implement Session validation
             val newSession = SveletorSession(username)
+
             if (!SveletorSession.validate(newSession)) {
                 println("Authentication Failed")
                 return@post call.respondRedirect("/login")

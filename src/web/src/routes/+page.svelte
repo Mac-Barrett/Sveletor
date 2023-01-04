@@ -4,7 +4,4 @@
 
 <h1>Welcome to Sveletor</h1>
 
-<p>Click <Link link='/login'>here</Link> to 'login' or click <Link link='/welcome'>here</Link> to visit the next page.</p>
-
-<p>Cock and ball torture :)</p>
-
+<p>Check out the <Link link='https://github.com/Mac-Barrett/Sveletor'>README</Link> for how to get started building Ktor applications with the best JS UI framework, Svelte</p>
