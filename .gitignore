@@ -1,0 +1,15 @@
+# Web Project
+/src/web/.DS_Store
+/src/web/node_modules/
+
+/src/web/.svelte-kit/
+/src/web/package
+
+
+# Ktor Project
+/src/jvmMain/resources/web/
+/src/jvmMain/resources/application.conf
+
+./.gradle/
+./.idea/
+./build/
