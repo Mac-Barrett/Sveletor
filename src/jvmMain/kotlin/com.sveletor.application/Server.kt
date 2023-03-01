@@ -1,8 +1,7 @@
 package com.sveletor.application
 
+import com.sveletor.application.api.example
 import com.sveletor.application.classes.SveletorSession
-import com.sveletor.application.api.authEndpoints
-import com.sveletor.application.components.sveltePage
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
@@ -24,11 +23,8 @@ fun main(args: Array<String>) = EngineMain.main(args)
  * The Sveletor main module. Attaches other necessary plugins.
  */
 fun Application.sveletorMain() {
-    applicationPlugins()
-
-    applicationPageRouting()
-
-    applicationAPIModules()
+    installPlugins()
+    installAPI()
 
     // Static Content
     routing {
@@ -40,26 +36,8 @@ fun Application.sveletorMain() {
 }
 
 
-/**
- * Svelte Pages should go here.
- */
-fun Application.applicationPageRouting() {
-    sveltePage("/")
-}
-
-
-/**
- * Module that loads the modules in api package
- */
-private fun Application.applicationAPIModules() {
-    authEndpoints()
-}
-
-
-/**
- * Module that installs ktor plugins
- */
-private fun Application.applicationPlugins() {
+/** Module that installs ktor plugins */
+private fun Application.installPlugins() {
     install(Sessions) {
         cookie<SveletorSession>("Sveletor_Session_ID", storage = SessionStorageMemory()) {
             cookie.path = "/"
@@ -77,4 +55,11 @@ private fun Application.applicationPlugins() {
             }
         }
     }
+}
+
+
+/** Module that installs API Endpoints */
+private fun Application.installAPI() {
+    // /api/example.kt
+    example()
 }
