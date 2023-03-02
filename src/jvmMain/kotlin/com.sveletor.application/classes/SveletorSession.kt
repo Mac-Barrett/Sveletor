@@ -4,10 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class SveletorSession(val username: String) {
-
-    companion object {
-        fun validate(session: SveletorSession): Boolean {
-            return session.username.isNotBlank()
-        }
+    // TODO Customize your session variables :)
+    fun validate(): Boolean {
+        return true
     }
 }

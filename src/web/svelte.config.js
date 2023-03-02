@@ -10,9 +10,17 @@ const config = {
 	kit: {
 		adapter: adapter({
             pages: './../jvmMain/resources/web',
-            assets: './../jvmMain/resources/web',
-            fallback: '404.html'
+            assets: './../jvmMain/resources/web/static',
+            fallback: '404.html',
         }),
+        paths: {
+            // For dev
+            assets: 'http://localhost:8080'
+            // For test
+            // assets: ''
+            // For prod
+            // assets: ''
+        },
         prerender: {
             handleMissingId: 'warn'
         }
