@@ -10,16 +10,6 @@ import io.ktor.util.pipeline.*
 import io.netty.handler.codec.http.HttpMethod
 
 
-fun Application.authenticatedEndpoint(
-    method: HttpMethod,
-    endpoint: String,
-    action: suspend PipelineContext<Unit, ApplicationCall>.(session: SveletorSession) -> Unit,
-    badSessionAction: suspend PipelineContext<Unit, ApplicationCall>.() -> Unit = { call.respondText("session invalid", status = HttpStatusCode.Unauthorized) }
-) {
-    routing { authenticatedEndpoint(method, endpoint, action, badSessionAction) }
-}
-
-
 /**
  * A server function that only allows requests from authenticated sessions.
  * Call from a [Route] block with a predefined endpoint.

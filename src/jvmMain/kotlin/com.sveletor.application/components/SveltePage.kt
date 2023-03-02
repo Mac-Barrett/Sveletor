@@ -76,17 +76,17 @@ fun Application.authenticatedSveltePage(
 
         if (session == null || !session.validate()) {
             when (deployment) {
-                // Start new session so that dev's don't have to login all the time
-//                "dev" -> {
-//                    session = SveletorSession(
-//                        username = "MBARRETT"
-//                    )
-//                    call.sessions.set(session)
-//
-//                    if (preResponse != null) {
-//                        preResponse(call, session)
-//                    }
-//                }
+//                 Start new session so that dev's don't have to login all the time
+                "dev" -> {
+                    session = SveletorSession(
+                        username = "MBARRETT"
+                    )
+                    call.sessions.set(session)
+
+                    if (preResponse != null) {
+                        preResponse(call, session)
+                    }
+                }
 
                 // Force login
                 else -> {

@@ -3,12 +3,16 @@ package com.sveletor.application
 import com.sveletor.application.api.example
 import com.sveletor.application.classes.SveletorSession
 import io.ktor.http.*
+import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.cachingheaders.*
+import io.ktor.server.plugins.contentnegotiation.*
+import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.routing.*
 import io.ktor.server.sessions.*
+import kotlinx.serialization.json.*
 import java.time.Duration
 
 
@@ -29,8 +33,10 @@ fun Application.sveletorMain() {
     // Static Content
     routing {
         static("/") {
-            static("_app") { resources("web/_app") }    // SvelteKit Static Adapter's compiled scripts
-            static("image") { resources("web/image") }  // SvelteKit proj's static/image folder
+            // Serves SvelteKit Static Adapter's 'assets' build output
+            resources("web/static")
+            // Serves resources/static folder content
+            resources("static")
         }
     }
 }
@@ -38,6 +44,25 @@ fun Application.sveletorMain() {
 
 /** Module that installs ktor plugins */
 private fun Application.installPlugins() {
+    install(CORS) {
+        allowHost("localhost")
+        allowHost("localhost:8080")
+        allowHost("127.0.0.1")
+        allowHost("127.0.0.1:8080")
+        allowHeader(HttpHeaders.ContentType)
+        allowMethod(HttpMethod.Put)
+        allowMethod(HttpMethod.Patch)
+        allowMethod(HttpMethod.Delete)
+    }
+
+    install(ContentNegotiation) {
+        json(Json {
+            prettyPrint = true
+            isLenient = true
+        })
+    }
+
+
     install(Sessions) {
         cookie<SveletorSession>("Sveletor_Session_ID", storage = SessionStorageMemory()) {
             cookie.path = "/"

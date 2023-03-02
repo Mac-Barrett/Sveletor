@@ -30,19 +30,19 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-server-netty:$ktorVersion")
+                implementation("io.ktor:ktor-server-html-builder:$ktorVersion")
                 implementation("io.ktor:ktor-server-html-builder-jvm:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
 
+                implementation("io.ktor:ktor-server-cors:$ktorVersion")
                 implementation("io.ktor:ktor-server-sessions:$ktorVersion")
                 implementation("io.ktor:ktor-server-caching-headers:$ktorVersion")
                 implementation("io.ktor:ktor-server-conditional-headers:$ktorVersion")
                 implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
 //                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
 //                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
 //                implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-//
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
                 implementation("ch.qos.logback:logback-classic:$logbackVersion")
             }
